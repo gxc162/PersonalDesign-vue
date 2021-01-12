@@ -74,6 +74,25 @@ export default{
                 context.commit('resetLoading',false)
             })
         },
+        // 根据状态检索
+        findByOrderStatus(context,status) {
+            //设置加载
+            context.commit('resetLoading',true)
+            if(status == '所有订单'){
+                context.dispatch('query')
+                //取消加载
+                context.commit('resetLoading',false)
+            } else {
+                get('order/findByOrderStatus',{status})
+                .then(result => {
+                    //将查询到的数据通过mutations设置到state中
+                    context.commit('resetList',result.data);
+                    //取消加载
+                    context.commit('resetLoading',false)
+                })
+            }
+            
+        },
         //添加或修改
         saveOrUpdate(context,order){
             

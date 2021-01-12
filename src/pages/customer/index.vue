@@ -9,7 +9,7 @@
                 </div>
             </el-col>
             <!-- 搜索栏 -->
-            <el-col :span="6">
+            <el-col :span="10">
                 <el-form :inline="true">
                     <el-form-item label="姓名">
                         <el-input size="small" placeholder="按照姓名搜索" v-model="listQuery.realname"></el-input>

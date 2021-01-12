@@ -8,19 +8,17 @@
  * @FilePath: \briup02\vue\huang-template\src\pages\map\index.vue
 -->
 <template>
-    <div class="patrol_area">
+    <div class="patrol_area" style="padding:1em;">
         <div>
             <el-row>
-                <el-col :span="6">
-                    <el-form :inline="true">
-                        <el-form-item label="地点">
-                            <el-input size="small" placeholder="按照地点搜索"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button size="small" type="success">搜索</el-button>
-                        </el-form-item>
-                    </el-form>
-                </el-col>
+                <el-form :inline="true">
+                    <el-form-item label="地点">
+                        <el-input size="small" placeholder="按照地点搜索"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button size="small" type="success">搜索</el-button>
+                    </el-form-item>
+                </el-form>
             </el-row>
         </div>
         <div class="patrol_area">
@@ -29,7 +27,8 @@
     </div>
 </template>
 
-    <script>
+<script>
+
 export default {
   name: 'Dashboard',
   data(){
@@ -41,20 +40,21 @@ export default {
   },
   methods:{
     createMpa(){
-         // GL版命名空间为BMapGL
+         // GL版命名空间为BMap
         // 按住鼠标右键，修改倾斜角和角度
-	    //var map = new BMapGL.Map("allmap");    // 创建Map实例
-	    //map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+	    //var map = new BMap.Map("allmap");    // 创建Map实例
+	    //map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
         //map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
         //自动定位
-        var map = new BMapGL.Map("allmap");
-        var point = new BMapGL.Point(116.331398,39.897445);
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
         map.centerAndZoom(point,12);
+        map.enableScrollWheelZoom(true);
 
-        var geolocation = new BMapGL.Geolocation();
+        var geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function(r){
             if(this.getStatus() == BMap_STATUS_SUCCESS){
-                var mk = new BMapGL.Marker(r.point);
+                var mk = new BMap.Marker(r.point);
                 map.addOverlay(mk);
                 map.panTo(r.point);
                 alert('您的位置：'+r.point.lng+','+r.point.lat);

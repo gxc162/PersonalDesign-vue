@@ -18,7 +18,6 @@
             <el-table-column prop="total" label="总价"></el-table-column>
             <el-table-column prop="status" label="状态"></el-table-column>
             <el-table-column prop="customer_id" label="顾客ID"></el-table-column>
-            
             <el-table-column label="操作">
                 <template v-slot="a">
                     <el-button
@@ -97,11 +96,16 @@
             ...mapState('order',['list','msg','visible','loading','total','listQuery'])
         },
         methods:{
-            handleClick(){
-
+            handleClick(tag){
+                this.findByOrderStatus(tag._props.label)
+                // if(tag._props.label='所有订单'){
+                //     this.query();
+                // } else {
+                    
+                // }
             },
             //辅助函数mapActions
-             ...mapActions('order',['openDialog','closeDialog','query']),
+             ...mapActions('order',['openDialog','closeDialog','query','findByOrderStatus']),
              ...mapActions('order',{
                  findAllOrder:'findAll',
                  saveOrUpdateOrder:'saveOrUpdate',
